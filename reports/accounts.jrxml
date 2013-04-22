@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9b29806-d69b-4e6f-8cfb-26f4c3bf9456">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="MongoDbQuery">
 		<![CDATA[{'collectionName':'accounts'}]]>
 	</queryString>
@@ -45,7 +48,7 @@
 		<band/>
 	</background>
 	<title>
-		<band height="72">
+		<band height="291">
 			<frame>
 				<reportElement uuid="3e1de675-358f-4bab-bc23-b3f3b53b0bf5" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
 				<staticText>
@@ -63,6 +66,71 @@
 					<text><![CDATA[Add a description here]]></text>
 				</staticText>
 			</frame>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement uuid="782bddd8-6fca-4e82-93c1-b7f6efcf823f" x="0" y="128" width="187" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{account.paymentMethod}]]></keyExpression>
+					<valueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<stackedAreaChart>
+				<chart evaluationTime="Report">
+					<reportElement uuid="47481d00-b6c5-4f1f-8f89-2a530b9ed14b" x="200" y="128" width="185" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dia 10"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{account.paymentMethod}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<areaPlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</areaPlot>
+			</stackedAreaChart>
+			<bubbleChart>
+				<chart evaluationTime="Report">
+					<reportElement uuid="7a93b5e8-b024-4c8f-aa58-fe103cda5d06" x="402" y="128" width="153" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyzDataset>
+					<xyzSeries>
+						<seriesExpression><![CDATA[15]]></seriesExpression>
+						<xValueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></xValueExpression>
+						<yValueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></yValueExpression>
+						<zValueExpression><![CDATA[1]]></zValueExpression>
+					</xyzSeries>
+				</xyzDataset>
+				<bubblePlot>
+					<plot/>
+					<xAxisFormat>
+						<axisFormat/>
+					</xAxisFormat>
+					<yAxisFormat>
+						<axisFormat/>
+					</yAxisFormat>
+				</bubblePlot>
+			</bubbleChart>
 		</band>
 	</title>
 	<pageHeader>
@@ -78,63 +146,63 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[account.email]]></text>
+				<text><![CDATA[Mail]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="8d39e7d2-7451-4c73-805d-114fba4cba72" mode="Opaque" x="55" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[account.gender]]></text>
+				<text><![CDATA[M/F]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="914cd44a-4b28-4581-9980-874647de2a65" mode="Opaque" x="110" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[account.name]]></text>
+				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="dd2444e8-dae8-46ee-b3ce-3ebd91efe44c" mode="Opaque" x="165" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[account.paymentMethod]]></text>
+				<text><![CDATA[Payment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="c4546628-6390-451b-832f-ee94f0f1cf63" mode="Opaque" x="220" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[account.surname]]></text>
+				<text><![CDATA[Surname]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="087c0b5a-2a0b-4d6a-9b75-9cbc8330d36b" mode="Opaque" x="275" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[location.address]]></text>
+				<text><![CDATA[Address]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="3f9e25c3-30cd-42bc-ab55-80ef347f4fbf" mode="Opaque" x="330" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[location.city]]></text>
+				<text><![CDATA[City]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="0eb591cc-764a-4e00-9fb0-5988348daa7d" mode="Opaque" x="385" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[location.country]]></text>
+				<text><![CDATA[Country]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="c558bd1e-02f7-42d7-be75-559ae32628ff" mode="Opaque" x="440" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[location.phone]]></text>
+				<text><![CDATA[Phone]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="5fde1605-7625-4ac6-8bfc-b210faecc300" mode="Opaque" x="495" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
