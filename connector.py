@@ -79,31 +79,3 @@ if __name__ == '__main__':
     res = createPieChart( '_id', 'expirat', data )
     json = json.dumps(res)
     print json
-
-
-"""
-    { 
-"item": [ 
-{ 
-"value": "100", 
-"label": "May", 
-"colour": "FFFF10AA" 
-}, 
-{ 
-"value": "160", 
-"label": "June", 
-"colour": "FFAA0AAA" 
-}, 
-{ 
-"value": "300", 
-"label": "July", 
-"colour": "FF5505AA" 
-}, 
-{ 
-"value": "140", 
-"label": "August", 
-"colour": "FF0000AA" 
-} 
-] 
-}
-"""
