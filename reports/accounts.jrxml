@@ -3,20 +3,36 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="ownerAccountId" class="java.lang.String"/>
 	<queryString language="MongoDbQuery">
-		<![CDATA[{'collectionName':'accounts'}]]>
+		<![CDATA[{
+ 'collectionName':'accounts'
+}]]>
 	</queryString>
+	<field name="_id" class="org.bson.types.ObjectId"/>
 	<field name="account.cardNumber" class="java.lang.String"/>
 	<field name="account.email" class="java.lang.String"/>
 	<field name="account.gender" class="java.lang.String"/>
+	<field name="account.language" class="java.lang.String"/>
 	<field name="account.name" class="java.lang.String"/>
+	<field name="account.password" class="java.lang.String"/>
 	<field name="account.paymentMethod" class="java.lang.String"/>
+	<field name="account.paymentOrderId" class="org.bson.types.ObjectId"/>
+	<field name="account.securityAnswer" class="java.lang.String"/>
+	<field name="account.securityQuestionId" class="java.lang.Integer"/>
 	<field name="account.surname" class="java.lang.String"/>
 	<field name="location.address" class="java.lang.String"/>
 	<field name="location.city" class="java.lang.String"/>
 	<field name="location.country" class="java.lang.String"/>
 	<field name="location.phone" class="java.lang.String"/>
 	<field name="location.postCode" class="java.lang.String"/>
+	<field name="orders" class="java.util.List"/>
+	<field name="prepaid" class="java.util.List"/>
+	<field name="sims" class="java.util.List"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="ts" class="java.util.Date"/>
+	<field name="tsp" class="java.util.Date"/>
+	<field name="tsu" class="java.util.Date"/>
 	<group name="account.cardNumber">
 		<groupExpression><![CDATA[$F{account.cardNumber}]]></groupExpression>
 		<groupHeader>
@@ -50,7 +66,7 @@
 	<title>
 		<band height="291">
 			<frame>
-				<reportElement uuid="3e1de675-358f-4bab-bc23-b3f3b53b0bf5" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<reportElement uuid="3e1de675-358f-4bab-bc23-b3f3b53b0bf5" mode="Opaque" x="19" y="-15" width="595" height="92" backcolor="#006699"/>
 				<staticText>
 					<reportElement uuid="5522dbce-079d-4069-9f2f-637fd2dd4753" x="20" y="20" width="234" height="43" forecolor="#FFFFFF"/>
 					<textElement>
