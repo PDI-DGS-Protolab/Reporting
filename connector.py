@@ -75,6 +75,7 @@ if __name__ == '__main__':
     # users = User(client).search()
     # role = Role(client).search()
     csv_rep = downloadReport( '/reports', 'Bundles', 'csv' )
+    print csv_rep
     data = parseCSV( csv_rep )
     res = createPieChart( '_id', 'expirat', data )
     json = json.dumps(res)

@@ -1,12 +1,18 @@
 
 // Imports
 var Geckoboard = require('geckoboard-push');
+var Mongodb = require('mongodb');
 
 
+<<<<<<< HEAD
 var API_KEY = '180911140d66035ce434390cf0dac36f';
+=======
+
+>>>>>>> c051b8864c8fb7def9e2cf973d6119a4fb933ab8
 var gecko = new Geckoboard({ api_key : API_KEY });
 
 
+<<<<<<< HEAD
 var callback = function(err, response){
     if (err) {
         console.log(err);
@@ -107,3 +113,28 @@ var rag_columns = function() {
 line();
 rag_columns();
 */
+=======
+// var pie = gecko.pie(PIE_KEY);
+// pie.send(items, function(err, response){
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(response);
+//     }
+// })
+
+// var db = getDB( 'ec2-54-228-152-90.eu-west-1.compute.amazonaws.com', 27017, 'day-10' )
+
+var server = new Mongodb.Server('ec2-54-228-152-90.eu-west-1.compute.amazonaws.com', 27017, {});
+var client = new Mongodb.Db('day-10', server);
+
+var listAllData = function(err, collection) {
+    collection.find().toArray(function(err, results) {
+        console.log(results);
+    });
+}
+
+client.open( function( err, pClient ) {
+    client.collection( 'accounts', listAllData );
+});
+>>>>>>> c051b8864c8fb7def9e2cf973d6119a4fb933ab8
