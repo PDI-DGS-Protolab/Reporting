@@ -47,7 +47,12 @@ var pie = function() {
     pie.send(pie_items, callback);
 };
 
+pie();
 
+
+
+
+/*
 var line = function() {
     var LINE_KEY = '31473-1fac5cba-54ce-4fee-9364-db9b7cfcbc5b';
     var line = gecko.line(LINE_KEY);
@@ -99,6 +104,6 @@ var rag_columns = function() {
 
 // Main
 
-pie();
 line();
 rag_columns();
+*/
