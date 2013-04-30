@@ -3,16 +3,11 @@
 var Geckoboard = require('geckoboard-push');
 var Mongodb = require('mongodb');
 
-
-<<<<<<< HEAD
 var API_KEY = '180911140d66035ce434390cf0dac36f';
-=======
 
->>>>>>> c051b8864c8fb7def9e2cf973d6119a4fb933ab8
 var gecko = new Geckoboard({ api_key : API_KEY });
 
 
-<<<<<<< HEAD
 var callback = function(err, response){
     if (err) {
         console.log(err);
@@ -113,28 +108,96 @@ var rag_columns = function() {
 line();
 rag_columns();
 */
-=======
-// var pie = gecko.pie(PIE_KEY);
-// pie.send(items, function(err, response){
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log(response);
-//     }
-// })
+var funnel = function(){
+  var FUNNEL_KEY = '31473-6d240b75-7c52-40d5-877c-aeee9ab1f77d';
+  var items = [
+    {
+      value: "87809",
+      label: "Step1"
+    },
+    {
+      value: "70022",
+      label: "Step2"
+    },
+    {
+      value: "63232",
+      label: "Step 3"
+    },
+    {
+      value: "53232",
+      label: "Step 4"
+    },
+    {
+      value: "32123",
+      label: "Step 5"
+    },
+    {
+      value: "23232",
+      label: "Step 6"
+    },
+    {
+      value: "12232",
+      label: "Step 7"
+    },
+    {
+      value: "2323",
+      label: "Step 8"
+    }
+  ];
 
-// var db = getDB( 'ec2-54-228-152-90.eu-west-1.compute.amazonaws.com', 27017, 'day-10' )
+  var funnel = gecko.funnel(FUNNEL_KEY);
+  funnel.send(items, 'standard', 'show', callback);
+};
 
-var server = new Mongodb.Server('ec2-54-228-152-90.eu-west-1.compute.amazonaws.com', 27017, {});
-var client = new Mongodb.Db('day-10', server);
 
-var listAllData = function(err, collection) {
-    collection.find().toArray(function(err, results) {
-        console.log(results);
-    });
-}
+var bullet = function(){
+  var BULLET_KEY = '31473-4ebcb24a-2d97-4b89-8243-7a2cff49e7ed';
+  var items = [
+    {
+      label: "Revenue 2011 YTD",
+      sublabel: "(U.S. $ in thousands)",
+      axis: {
+        point: [
+          0,
+          200,
+          400,
+          600,
+          800,
+          1000
+        ]
+      },
+      range:[
+        { color: "red",
+          start: 0,
+          end: 400
+        },
+        {
+          color: "amber",
+          start: 401,
+          end: 700
+        },
+        {
+          color: "green",
+          start: 701,
+          end: 1000
+        }
+      ],
+      measure: {
+        current: {
+          start: 0,
+          end: 500
+        },
+        projected: {
+          start: 100,
+          end: 900
+        }
+      },
+      comparative: {
+        point: 600
+      }
+    }
+  ];
 
-client.open( function( err, pClient ) {
-    client.collection( 'accounts', listAllData );
-});
->>>>>>> c051b8864c8fb7def9e2cf973d6119a4fb933ab8
+  var bullet = gecko.bullet(BULLET_KEY);
+  bullet.send(items, 'horizontal', callback);
+};
