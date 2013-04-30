@@ -18,39 +18,35 @@ var callback = function(err, response){
 };
 
 
-var pie = function() {
-    var PIE_KEY = '31473-8a9b8503-c75d-483a-8b9f-d1324c5d01fc';
+makePie = function(items, key) {
+    var PIE_KEY = key;
     var pie = gecko.pie(PIE_KEY);
 
     var pie_items = [
         {
-            value: "100",
-            label: "A1",
+            value: items[0],
+            label: "Default",
             colour: "FFFF10AA"
         },
         {
-            value: "160",
-            label: "A2",
+            value: items[1],
+            label: "Purchase",
             colour: "FFAA0AAA"
         },
         {
-            value: "300",
-            label: "A3",
+            value: items[2],
+            label: "Gift",
             colour: "FF5505AA"
         },
         {
-            value: "140",
-            label: "A4",
+            value: items[3],
+            label: "Prepaid",
             colour: "FF0000AA"
         }
     ];
 
     pie.send(pie_items, callback);
 };
-
-pie();
-
-
 
 
 /*
