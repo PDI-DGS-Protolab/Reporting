@@ -1,5 +1,5 @@
 
-var module_db = require('db')
+var db = require('./db.js');
 
 var options = {
     url    : 'ec2-54-228-152-90.eu-west-1.compute.amazonaws.com',
@@ -7,12 +7,11 @@ var options = {
     dbname : 'day-10'
 };
 
-var db = var module_db.startClient(options);
+db.startClient(options);
 
-var keys = ['category'];
-var col = 'accounts';
+var key = 'category';
+var col = 'bundles';
 
-var cats = db.getData(keys, col);
-cats.forEach(function(c) {
-
+var cats = db.getData(key, col, function( err, results ) {
+	console.log( results );
 });
