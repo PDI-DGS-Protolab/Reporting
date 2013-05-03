@@ -10,7 +10,9 @@ var client;
 
 // extraer datos de una col concreta
 var listData = function( key, collection, cb ) {
-    collection.find({}, { 'category': 1 } ).toArray( cb );
+    var aux = {};
+    aux[key] = 1;
+    collection.find({}, aux ).toArray( cb );
 };
 
 
