@@ -20,17 +20,17 @@ var def = 0;
 
 var cats = db.getData(key, col, function(err, response) {
 	response.forEach(function(c) {
-		if (c == "PURCHASE"){
+		if (c[key] == "PURCHASE"){
 			purchase = purchase + 1;
-		} else if(c == "GIFT"){
+		} else if(c[key] == "GIFT"){
 			gift = gift + 1;
-		}else if (c == "PREPAID"){
+		}else if (c[key] == "PREPAID"){
 			prepaid = prepaid + 1;
 		}else{
 			def = def + 1;
 		}
 	});
-});
 
-items = [def, purchase, gift, prepaid];
-push.makePie(items,'31473-8a9b8503-c75d-483a-8b9f-d1324c5d01fc');
+	items = [def, purchase, gift, prepaid];
+	push.makePie(items,'31473-8a9b8503-c75d-483a-8b9f-d1324c5d01fc');
+});

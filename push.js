@@ -44,7 +44,6 @@ makePie = function(items, key) {
             colour: "FF0000AA"
         }
     ];
-
     pie.send(pie_items, callback);
 };
 
@@ -197,3 +196,5 @@ var bullet = function(){
   var bullet = gecko.bullet(BULLET_KEY);
   bullet.send(items, 'horizontal', callback);
 };
+
+exports.makePie = makePie;
