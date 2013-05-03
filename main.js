@@ -10,7 +10,7 @@ var filterCategories = function(response) {
     var def = 0;
 
     var key = 'category';
-
+    console.log(response);
     response.forEach(function(c) {
         if (c[key] == "PURCHASE"){
             purchase = purchase + 1;
@@ -33,6 +33,19 @@ var createPie = function(key, col, cb) {
     });
 };
 
+var countData = function( data ) {
+    var items = {};
+
+    for ( var d in data ) {
+        var values = data[d];
+
+        for ( var v in values ){
+            items[ values[v] ] = items[ values[v] ] ? items[ values[v] ] + 1 : 1;
+        }
+    }
+    return items;
+};
+
 
 // Main
 var options = {
@@ -42,5 +55,4 @@ var options = {
 };
 
 db.startClient(options);
-
 createPie('category', 'bundles', filterCategories);
