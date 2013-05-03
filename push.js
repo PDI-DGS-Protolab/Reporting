@@ -69,7 +69,6 @@ var makeLine = function(data, key) {
     }
 
     line_settings['axisx'] = axisX;
-    console.log(line_items);
     line.send(line_items, line_settings, callback);
 };
 
