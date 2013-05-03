@@ -33,6 +33,24 @@ var createPie = function(key, col, cb) {
     });
 };
 
+var filterPrice = function(response) {
+    var items = [];
+    var key = 'price';
+
+    response.forEach(function(c) {
+        items.push( c[key] );
+    });
+
+    var RAG_COLUMNS_KEY = '31473-7653d56b-a456-4512-9343-657404b55700';
+    push.makeRagColumns(items, RAG_COLUMNS_KEY);
+};
+
+var createRagColumns = function(key, col, cb) {
+    db.getData(key, col, function(err, response) {
+        cb(response);
+    });
+};
+
 
 // Main
 var options = {
@@ -43,4 +61,5 @@ var options = {
 
 db.startClient(options);
 
-createPie('category', 'bundles', filterCategories);
+//createPie('category', 'bundles', filterCategories);
+createRagColumns('price', 'bundles', filterPrice);

@@ -71,38 +71,58 @@ var line = function() {
 
     line.send(line_items, line_settings, callback);
 };
+*/
 
 
-var rag_columns = function() {
-    var RAG_COLUMNS_KEY = '31473-7653d56b-a456-4512-9343-657404b55700';
-    var ragcol = gecko.ragColumn(RAG_COLUMNS_KEY);
+function numElementsArray(arr) {
+    var a = [], b = [], prev;
 
-    var ragcol_items = [
-        {
-            value: 120,
-            text: "Red description"
-        },
-        {
-            value: 75,
-            text: "Amber description"
-        },
-        {
-            value: 5,
-            text: "Green description"
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
         }
-    ];
+        prev = arr[i];
+    }
+
+    return [a, b];
+}
+
+
+var makeRagColumns = function(items, KEY) {
+    var ragcol = gecko.ragColumn(KEY);
+    var ragcol_items = [];
+
+    /*
+    items.forEach(function(it) {
+        ragcol_items.push({
+            value: it,
+            text: it//JSON.stringify(it)
+        });
+    });
+    */
+
+    var itemsCounted = numElementsArray(items);
+    var times = itemsCounted[0];
+    var numbers = itemsCounted[1];
+
+    for (var i=0, len=times.length; i < len; i++) {
+        ragcol_items.push({
+            value: times[i],
+            text: numbers[i]
+        });
+    };
 
     var ragcol_type = 'reverse';
-
-    ragcol.send(ragcol_items, ragcol_type, callback);
+    console.log(ragcol_items);
+    //ragcol.send(ragcol_items, ragcol_type, callback);
 };
 
 
-// Main
-
-line();
-rag_columns();
-*/
+/*
 var funnel = function(){
   var FUNNEL_KEY = '31473-6d240b75-7c52-40d5-877c-aeee9ab1f77d';
   var items = [
@@ -196,5 +216,7 @@ var bullet = function(){
   var bullet = gecko.bullet(BULLET_KEY);
   bullet.send(items, 'horizontal', callback);
 };
+*/
 
 exports.makePie = makePie;
+exports.makeRagColumns = makeRagColumns;
