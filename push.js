@@ -44,7 +44,6 @@ var makePie = function(items, key) {
             colour: "FF0000AA"
         }
     ];
-
     pie.send(pie_items, callback);
 };
 
