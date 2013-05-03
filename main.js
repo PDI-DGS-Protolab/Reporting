@@ -27,6 +27,15 @@ var filterCategories = function(response) {
     push.makePie(items,'31473-8a9b8503-c75d-483a-8b9f-d1324c5d01fc');
 };
 
+var filterLine = function(response){
+	data = [];
+
+	for (var i = 0; i < response.length; i++) {
+		data.push((response[i])['data']);
+	}
+	push.makeLine(data,'31473-1fac5cba-54ce-4fee-9364-db9b7cfcbc5b');
+};
+
 var createPie = function(key, col, cb) {
     db.getData(key, col, function(err, response) {
         cb(response);
@@ -46,6 +55,12 @@ var countData = function( data ) {
     return items;
 };
 
+var createLine = function(key, col, cb){
+db.getData(key, col, function(err,response){
+		filterLine(response);
+	});
+};
+
 
 // Main
 var options = {
@@ -55,4 +70,10 @@ var options = {
 };
 
 db.startClient(options);
+
 createPie('category', 'bundles', filterCategories);
+
+
+//createPie('category', 'bundles', filterCategories);
+createLine('data', 'bundles', filterLine);
+

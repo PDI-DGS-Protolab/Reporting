@@ -48,19 +48,14 @@ var makePie = function(items, key) {
 };
 
 
-/*
-var line = function() {
+var makeLine = function(data, key) {
     var LINE_KEY = '31473-1fac5cba-54ce-4fee-9364-db9b7cfcbc5b';
     var line = gecko.line(LINE_KEY);
 
-    var line_items = ["12.3", "2.3", "10", "15", "15", "13", "12.1", "9.8", "12.3", "2.3", "10", "15", "15", "13", "12.1", "9.8", "11", "16", "15", "13", "10", "7"];
-    var line_settings = {
-        "axisx": [
-            "Jun",
-            "Jul",
-            "Aug"
-        ],
+    var line_items = data;
+    var axisX = [];
 
+    var line_settings = {
         "axisy": [
             "Min",
             "Max"
@@ -69,9 +64,15 @@ var line = function() {
         "colour": "ff9900"
     };
 
+    for (var i = 0; i < data.length; i++) {
+        axisX.push(i);
+    }
+
+    line_settings['axisx'] = axisX;
     line.send(line_items, line_settings, callback);
 };
 
+/*
 
 var rag_columns = function() {
     var RAG_COLUMNS_KEY = '31473-7653d56b-a456-4512-9343-657404b55700';
@@ -198,3 +199,4 @@ var bullet = function(){
 };
 
 exports.makePie = makePie;
+exports.makeLine = makeLine;
