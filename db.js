@@ -11,6 +11,7 @@ var client;
 // extraer datos de una col concreta
 var listData = function( key, collection, cb ) {
     var aux = {};
+    aux['_id'] = 0;
     aux[key] = 1;
     collection.find({}, aux ).toArray( cb );
 };
