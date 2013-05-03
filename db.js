@@ -11,24 +11,29 @@ var client;
 // extraer datos de una col concreta
 var listData = function( key, collection, cb ) {
     var aux = {};
+    aux['_id'] = 0;
     aux[key] = 1;
     collection.find({}, aux ).toArray( cb );
 };
 
 
-var startClient = function( options ) {
+var startClient = function(options, cb) {
     var server = new Mongodb.Server( options.url, options.port, {} );
     client = new Mongodb.Db( options.dbname, server);
+    client.open(function(err) {
+        cb(err);
+    });
 };
 
 
 var getData = function( key, collName, cb ) {
-    client.open( function( err, pClient ) {
-        client.collection( collName, function( err, collection ) {
-            if ( !err ) listData( key, collection, cb );
-        });
+    client.collection( collName, function( err, collection ) {
+        if ( !err ) listData( key, collection, cb );
     });
 };
 
+
 exports.startClient = startClient;
-exports.getData     = getData;
+exports.getData = getData;
+
+
