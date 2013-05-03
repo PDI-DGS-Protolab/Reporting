@@ -18,7 +18,7 @@ var callback = function(err, response){
 };
 
 
-makePie = function(items, key) {
+var makePie = function(items, key) {
     var PIE_KEY = key;
     var pie = gecko.pie(PIE_KEY);
 
@@ -197,3 +197,5 @@ var bullet = function(){
   var bullet = gecko.bullet(BULLET_KEY);
   bullet.send(items, 'horizontal', callback);
 };
+
+exports.makePie = makePie;
