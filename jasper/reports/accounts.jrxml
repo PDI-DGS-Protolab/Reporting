@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9b29806-d69b-4e6f-8cfb-26f4c3bf9456">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ownerAccountId" class="java.lang.String"/>
+	<queryString language="MongoDbQuery">
+		<![CDATA[{
+ 'collectionName':'accounts'
+}]]>
+	</queryString>
+	<field name="_id" class="org.bson.types.ObjectId"/>
+	<field name="account.cardNumber" class="java.lang.String"/>
+	<field name="account.email" class="java.lang.String"/>
+	<field name="account.gender" class="java.lang.String"/>
+	<field name="account.language" class="java.lang.String"/>
+	<field name="account.name" class="java.lang.String"/>
+	<field name="account.password" class="java.lang.String"/>
+	<field name="account.paymentMethod" class="java.lang.String"/>
+	<field name="account.paymentOrderId" class="org.bson.types.ObjectId"/>
+	<field name="account.securityAnswer" class="java.lang.String"/>
+	<field name="account.securityQuestionId" class="java.lang.Integer"/>
+	<field name="account.surname" class="java.lang.String"/>
+	<field name="location.address" class="java.lang.String"/>
+	<field name="location.city" class="java.lang.String"/>
+	<field name="location.country" class="java.lang.String"/>
+	<field name="location.phone" class="java.lang.String"/>
+	<field name="location.postCode" class="java.lang.String"/>
+	<field name="orders" class="java.util.List"/>
+	<field name="prepaid" class="java.util.List"/>
+	<field name="sims" class="java.util.List"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="ts" class="java.util.Date"/>
+	<field name="tsp" class="java.util.Date"/>
+	<field name="tsu" class="java.util.Date"/>
+	<group name="account.cardNumber">
+		<groupExpression><![CDATA[$F{account.cardNumber}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement uuid="f12af493-eb3a-4fe1-9e3f-999c3c6caadb" mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[account.cardNumber]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="fdba9e92-de0b-4148-b614-8175b8600d57" mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{account.cardNumber}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="64416be3-c625-4515-a5fa-33c8d1fdfcc8" x="-20" y="32" width="595" height="1" forecolor="#666666"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="291">
+			<frame>
+				<reportElement uuid="3e1de675-358f-4bab-bc23-b3f3b53b0bf5" mode="Opaque" x="19" y="-15" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="5522dbce-079d-4069-9f2f-637fd2dd4753" x="20" y="20" width="234" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TITLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="90a5621d-5137-48af-aef3-72d75eb48aac" x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement uuid="782bddd8-6fca-4e82-93c1-b7f6efcf823f" x="0" y="128" width="187" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{account.paymentMethod}]]></keyExpression>
+					<valueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<stackedAreaChart>
+				<chart evaluationTime="Report">
+					<reportElement uuid="47481d00-b6c5-4f1f-8f89-2a530b9ed14b" x="200" y="128" width="185" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dia 10"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{account.paymentMethod}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<areaPlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</areaPlot>
+			</stackedAreaChart>
+			<bubbleChart>
+				<chart evaluationTime="Report">
+					<reportElement uuid="7a93b5e8-b024-4c8f-aa58-fe103cda5d06" x="402" y="128" width="153" height="100"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyzDataset>
+					<xyzSeries>
+						<seriesExpression><![CDATA[15]]></seriesExpression>
+						<xValueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></xValueExpression>
+						<yValueExpression><![CDATA[$V{account.cardNumber_COUNT}]]></yValueExpression>
+						<zValueExpression><![CDATA[1]]></zValueExpression>
+					</xyzSeries>
+				</xyzDataset>
+				<bubblePlot>
+					<plot/>
+					<xAxisFormat>
+						<axisFormat/>
+					</xAxisFormat>
+					<yAxisFormat>
+						<axisFormat/>
+					</yAxisFormat>
+				</bubblePlot>
+			</bubbleChart>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="ae260f2d-fb12-420a-b254-962f1128c896" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="e4ed74d7-1b54-4b1f-bc17-0048253bfb05" mode="Opaque" x="0" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8d39e7d2-7451-4c73-805d-114fba4cba72" mode="Opaque" x="55" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[M/F]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="914cd44a-4b28-4581-9980-874647de2a65" mode="Opaque" x="110" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dd2444e8-dae8-46ee-b3ce-3ebd91efe44c" mode="Opaque" x="165" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c4546628-6390-451b-832f-ee94f0f1cf63" mode="Opaque" x="220" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Surname]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="087c0b5a-2a0b-4d6a-9b75-9cbc8330d36b" mode="Opaque" x="275" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3f9e25c3-30cd-42bc-ab55-80ef347f4fbf" mode="Opaque" x="330" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[City]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0eb591cc-764a-4e00-9fb0-5988348daa7d" mode="Opaque" x="385" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Country]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c558bd1e-02f7-42d7-be75-559ae32628ff" mode="Opaque" x="440" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5fde1605-7625-4ac6-8bfc-b210faecc300" mode="Opaque" x="495" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[location.postCode]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="bc61e581-2c17-4c85-8ea0-458d8bfa0ba5" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="eee7793e-a9aa-4ecf-bf31-6e41e5aaab4c" x="0" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account.email}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="87325b4c-5e13-42bb-a8c0-88c8abf7d85c" x="55" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account.gender}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="dc0bd141-0078-4bda-b1d5-d683a7d2c46c" x="110" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account.name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d4c9daf0-8f61-4bdb-9c5b-0a3242b981c2" x="165" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account.paymentMethod}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="832c7e85-27c8-4bcd-9eab-4d9947244268" x="220" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account.surname}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="dccd688d-0e94-4f66-ba06-c970bb17f4ad" x="275" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location.address}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c7e25c9b-f420-4b92-8ccd-0266b0977a49" x="330" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location.city}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="f2873557-4b55-4413-87e2-b07ed41880be" x="385" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location.country}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="0780ac48-2544-4e99-bec3-06c6efc50cb9" x="440" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location.phone}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="78f8d0e8-2b60-440a-bcdf-52ebcb065988" x="495" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location.postCode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="b7814629-505d-48ad-9a1c-5de21237e58a" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="aa16b28e-85a3-442c-8f8f-c665557ce78e" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="98edb6ad-cc84-460c-b2cf-8e7b86690f72" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

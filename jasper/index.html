@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reporting Test</title>
+
+    <style>
+        .total {
+            height: 100%;
+            width : 100%;
+        }
+    </style>
+</head>
+
+
+<body class="total">
+
+    <iframe class="total" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/rest_v2/reports/reports/ProbandoReport.html" frameborder="0"></iframe>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+
+            var url = "http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/rest_v2/reports/reports/ProbandoReport.html";
+            $.get(url, function(data) {
+                console.log(data);
+            })
+
+        });
+    </script>
+
+</body>
+
+</html>
