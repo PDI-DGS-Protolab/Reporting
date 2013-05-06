@@ -18,40 +18,21 @@ var callback = function(err, response){
 };
 
 
-var makePie = function(items, key) {
-    var PIE_KEY = key;
-    var pie = gecko.pie(PIE_KEY);
+var makePie = function(items, widgetKey) {
+    var pie = gecko.pie(widgetKey);
+    var colours = [ "FFFF10AA", "FFAA0AAA", "FF5505AA", "FF0000AA" ];
 
-    var pie_items = [
-        {
-            value: items[0],
-            label: "Default",
-            colour: "FFFF10AA"
-        },
-        {
-            value: items[1],
-            label: "Purchase",
-            colour: "FFAA0AAA"
-        },
-        {
-            value: items[2],
-            label: "Gift",
-            colour: "FF5505AA"
-        },
-        {
-            value: items[3],
-            label: "Prepaid",
-            colour: "FF0000AA"
-        }
-    ];
-    console.log(pie_items);
-    pie.send(pie_items, callback);
+    for (var i = 0; i < items.length; i++) {
+        var c = i % colours.length;
+        items[i].colour = colours[c];
+    };
+
+    pie.send(items, callback);
 };
 
 
-var makeLine = function(data, key) {
-    var LINE_KEY = '31473-1fac5cba-54ce-4fee-9364-db9b7cfcbc5b';
-    var line = gecko.line(LINE_KEY);
+var makeLine = function(data, widgetKey) {
+    var line = gecko.line(widgetKey);
 
     var line_items = data;
     var axisX = [];
@@ -74,8 +55,8 @@ var makeLine = function(data, key) {
 };
 
 
-var makeRagColumns = function(items, KEY) {
-    var ragcol = gecko.ragColumn(KEY);
+var makeRagColumns = function(items, widgetKey) {
+    var ragcol = gecko.ragColumn(widgetKey);
     var ragcol_type = 'reverse';
 
     var LIMIT = 3;    // Limit of data elements
@@ -83,13 +64,12 @@ var makeRagColumns = function(items, KEY) {
         items.pop();
     }
 
-    //console.log(items);
     ragcol.send(items, ragcol_type, callback);
 };
 
 
-var makeFunnel = function(items, KEY){
-    var funnel = gecko.funnel(KEY);
+var makeFunnel = function(items, widgetKey){
+    var funnel = gecko.funnel(widgetKey);
     funnel.send(items, 'standard', 'hide', callback);
 };
 
