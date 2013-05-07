@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Reporting</title>
+
+    <style>
+        .total,
+        .panel,
+        html, body {
+            width : 100%;
+            height: 100%;
+        }
+
+        html, body {
+            margin : 0 auto;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .f-left   { float: left;    }
+        .right  { float: right;   }
+        .clear  { clear: both;    }
+        .hidden { display : none; }
+
+        .header {
+            height: 78px;
+            width: 100%;
+        }
+
+        .container {
+            height : 100%;
+            width : 93.5%;
+        }
+
+        .aside {
+            width: 6.5%;
+            height: 100%;
+        }
+
+            .list {
+                background: rgb(48, 57, 63);
+                box-sizing: border-box;
+                list-style: none;
+                margin: 0 auto;
+                padding: 20px 30%;
+            }
+
+                .item {
+                    background: no-repeat no-repeat;
+                    border-radius: 5px;
+                    margin-bottom: 25px;
+                    height: 44px;
+                    width: 44px;
+                }
+
+                    .item.sheet     { background-image: url('icons/sheet.png');     }
+                    .item.sheet2    { background-image: url('icons/sheet2.png');    }
+                    .item.alert     { background-image: url('icons/alert.png');     }
+                    .item.cube      { background-image: url('icons/cube.png');      }
+                    .item.euro      { background-image: url('icons/euro.png');      }
+                    .item.stats     { background-image: url('icons/stats.png');     }
+                    .item.user      { background-image: url('icons/user.png');      }
+                    .item.triangles { background-image: url('icons/triangles.png'); }
+                    .item.ticks     { background-image: url('icons/ticks.png');     }
+
+    </style>
+</head>
+
+
+<body>
+    <header class="header">
+        <img class="total" src="header.png" alt="Smart Center Header">
+    </header>
+
+    <section class="total">
+        <aside class="aside f-left">
+            <ul class="list total">
+                <li class="item sheet"></li>
+                <li class="item sheet2"></li>
+                <li class="item alert"></li>
+                <li class="item cube"></li>
+                <li class="item euro"></li>
+                <li class="item stats"></li>
+                <li class="item user"></li>
+                <li class="item triangles"></li>
+                <li class="item ticks"></li>
+            </ul>
+        </aside>
+
+        <article class="container f-left">
+            <figure class="panel table">
+                <img src="table.png" alt="Table" />
+            </figure>
+
+            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0"></iframe>
+
+            <iframe class="panel gecko" src="https://tidreporting.geckoboard.com/loop/B5D1F7E2F80EF332" frameborder="0"></iframe>
+        </article>
+
+        <div class="clear"></div>
+    </section>
+
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!--
+    <script type="text/javascript">
+        var downloadJQuery = function () {
+            var s = document.createElement('script');
+            s.type = "text/javascript";
+            s.src  = "js/jquery-1.9.1.min.js";
+            document.getElementsByTagName('body')[0].appendChild(s);
+        };
+
+        window.jQuery || downloadJQuery();
+    </script>
+    -->
+
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+
+</html>
