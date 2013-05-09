@@ -85,12 +85,12 @@
     <section class="total">
         <aside class="aside f-left">
             <ul class="list total">
-                <li class="item sheet"></li>
-                <li class="item sheet2"></li>
-                <li class="item alert"></li>
+                <li class="item sheet table"></li>
+                <li class="item sheet2 report"></li>
+                <li class="item alert dashboard"></li>
+                <li class="item stats gecko"></li>
                 <li class="item cube"></li>
                 <li class="item euro"></li>
-                <li class="item stats"></li>
                 <li class="item user"></li>
                 <li class="item triangles"></li>
                 <li class="item ticks"></li>
@@ -102,12 +102,10 @@
                 <img style="width: 100%;" src="table.png" alt="Table" />
             </figure>
 
-            <!--
-            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0" scrolling="0">
+            <iframe class="panel report" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/rest_v2/reports/reports/ProbandoReport.html" frameborder="0" scrolling="0">
             </iframe>
-            -->
 
-            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&theme=embedded&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0" scrolling="0"></iframe>
+            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&theme=embedded&decorate=no&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0" scrolling="0"></iframe>
 
             <iframe class="panel gecko" src="https://tidreporting.geckoboard.com/loop/B5D1F7E2F80EF332" frameborder="0"></iframe>
         </article>
@@ -118,19 +116,6 @@
 
     <!-- JavaScript -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <!--
-    <script type="text/javascript">
-        var downloadJQuery = function () {
-            var s = document.createElement('script');
-            s.type = "text/javascript";
-            s.src  = "js/jquery-1.9.1.min.js";
-            document.getElementsByTagName('body')[0].appendChild(s);
-        };
-
-        window.jQuery || downloadJQuery();
-    </script>
-    -->
-
     <script type="text/javascript" src="js/script.js"></script>
 
 </body>
