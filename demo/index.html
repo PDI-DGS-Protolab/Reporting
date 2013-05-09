@@ -19,6 +19,10 @@
             overflow: hidden;
         }
 
+        figure {
+            margin : 0;
+        }
+
         .f-left   { float: left;    }
         .right  { float: right;   }
         .clear  { clear: both;    }
@@ -65,6 +69,10 @@
                     .item.triangles { background-image: url('icons/triangles.png'); }
                     .item.ticks     { background-image: url('icons/ticks.png');     }
 
+        iframe {
+            border: none;
+            padding: 0;
+        }
     </style>
 </head>
 
@@ -91,10 +99,15 @@
 
         <article class="container f-left">
             <figure class="panel table">
-                <img src="table.png" alt="Table" />
+                <img style="width: 100%;" src="table.png" alt="Table" />
             </figure>
 
-            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0"></iframe>
+            <!--
+            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0" scrolling="0">
+            </iframe>
+            -->
+
+            <iframe class="panel dashboard" src="http://ec2-54-228-152-90.eu-west-1.compute.amazonaws.com:8080/jasperserver-pro/flow.html?_flowId=dashboardRuntimeFlow&theme=embedded&dashboardResource=%2Fsupermart%2FSupermartDashboard30" frameborder="0" scrolling="0"></iframe>
 
             <iframe class="panel gecko" src="https://tidreporting.geckoboard.com/loop/B5D1F7E2F80EF332" frameborder="0"></iframe>
         </article>
