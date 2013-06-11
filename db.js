@@ -1,16 +1,39 @@
-// conectar
+
+var Mongodb = require( 'mongodb' );
+
+// var URL = 'ec2-54-228-152-90.eu-west-1.compute.amazonaws.com';
+// var PORT = 27017;
+// var DBNAME = 'day-10';
+
+var client;
+
 
 // extraer datos de una col concreta
-var Mongodb = require('mongodb');
-var server = new Mongodb.Server('ec2-54-228-152-90.eu-west-1.compute.amazonaws.com', 27017, {});
-var client = new Mongodb.Db('day-10', server);
+var listData = function( key, collection, cb ) {
+    var aux = {};
+    aux['_id'] = 0;
+    aux[key] = 1;
+    collection.find({}, aux ).toArray( cb );
+};
 
-var listAllData = function(err, collection) {
-    collection.find().toArray(function(err, results) {
-        console.log(results);
+
+var startClient = function(options, cb) {
+    var server = new Mongodb.Server( options.url, options.port, {} );
+    client = new Mongodb.Db( options.dbname, server);
+    client.open(function(err) {
+        cb(err);
     });
-}
+};
 
-client.open( function( err, pClient ) {
-    client.collection( 'accounts', listAllData );
-});
+
+var getData = function( key, collName, cb ) {
+    client.collection( collName, function( err, collection ) {
+        if ( !err ) listData( key, collection, cb );
+    });
+};
+
+
+exports.startClient = startClient;
+exports.getData = getData;
+
+

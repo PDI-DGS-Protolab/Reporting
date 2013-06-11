@@ -18,54 +18,26 @@ var callback = function(err, response){
 };
 
 
-var pie = function() {
-    var PIE_KEY = '31473-8a9b8503-c75d-483a-8b9f-d1324c5d01fc';
-    var pie = gecko.pie(PIE_KEY);
+var makePie = function(items, widgetKey) {
+    var pie = gecko.pie(widgetKey);
+    var colours = [ "FFFF10AA", "FFAA0AAA", "FF5505AA", "FF0000AA" ];
 
-    var pie_items = [
-        {
-            value: "100",
-            label: "A1",
-            colour: "FFFF10AA"
-        },
-        {
-            value: "160",
-            label: "A2",
-            colour: "FFAA0AAA"
-        },
-        {
-            value: "300",
-            label: "A3",
-            colour: "FF5505AA"
-        },
-        {
-            value: "140",
-            label: "A4",
-            colour: "FF0000AA"
-        }
-    ];
+    for (var i = 0; i < items.length; i++) {
+        var c = i % colours.length;
+        items[i].colour = colours[c];
+    };
 
-    pie.send(pie_items, callback);
+    pie.send(items, callback);
 };
 
-pie();
 
+var makeLine = function(data, widgetKey) {
+    var line = gecko.line(widgetKey);
 
+    var line_items = data;
+    var axisX = [];
 
-
-/*
-var line = function() {
-    var LINE_KEY = '31473-1fac5cba-54ce-4fee-9364-db9b7cfcbc5b';
-    var line = gecko.line(LINE_KEY);
-
-    var line_items = ["12.3", "2.3", "10", "15", "15", "13", "12.1", "9.8", "12.3", "2.3", "10", "15", "15", "13", "12.1", "9.8", "11", "16", "15", "13", "10", "7"];
     var line_settings = {
-        "axisx": [
-            "Jun",
-            "Jul",
-            "Aug"
-        ],
-
         "axisy": [
             "Min",
             "Max"
@@ -74,82 +46,34 @@ var line = function() {
         "colour": "ff9900"
     };
 
+    for (var i = 0; i < data.length; i++) {
+        axisX.push(i);
+    }
+
+    line_settings['axisx'] = axisX;
     line.send(line_items, line_settings, callback);
 };
 
 
-var rag_columns = function() {
-    var RAG_COLUMNS_KEY = '31473-7653d56b-a456-4512-9343-657404b55700';
-    var ragcol = gecko.ragColumn(RAG_COLUMNS_KEY);
-
-    var ragcol_items = [
-        {
-            value: 120,
-            text: "Red description"
-        },
-        {
-            value: 75,
-            text: "Amber description"
-        },
-        {
-            value: 5,
-            text: "Green description"
-        }
-    ];
-
+var makeRagColumns = function(items, widgetKey) {
+    var ragcol = gecko.ragColumn(widgetKey);
     var ragcol_type = 'reverse';
 
-    ragcol.send(ragcol_items, ragcol_type, callback);
-};
-
-
-// Main
-
-line();
-rag_columns();
-*/
-var funnel = function(){
-  var FUNNEL_KEY = '31473-6d240b75-7c52-40d5-877c-aeee9ab1f77d';
-  var items = [
-    {
-      value: "87809",
-      label: "Step1"
-    },
-    {
-      value: "70022",
-      label: "Step2"
-    },
-    {
-      value: "63232",
-      label: "Step 3"
-    },
-    {
-      value: "53232",
-      label: "Step 4"
-    },
-    {
-      value: "32123",
-      label: "Step 5"
-    },
-    {
-      value: "23232",
-      label: "Step 6"
-    },
-    {
-      value: "12232",
-      label: "Step 7"
-    },
-    {
-      value: "2323",
-      label: "Step 8"
+    var LIMIT = 3;    // Limit of data elements
+    for (var i = LIMIT, len = items.length; i < len; i++) {
+        items.pop();
     }
-  ];
 
-  var funnel = gecko.funnel(FUNNEL_KEY);
-  funnel.send(items, 'standard', 'show', callback);
+    ragcol.send(items, ragcol_type, callback);
 };
 
 
+var makeFunnel = function(items, widgetKey){
+    var funnel = gecko.funnel(widgetKey);
+    funnel.send(items, 'standard', 'hide', callback);
+};
+
+/*
 var bullet = function(){
   var BULLET_KEY = '31473-4ebcb24a-2d97-4b89-8243-7a2cff49e7ed';
   var items = [
@@ -201,3 +125,10 @@ var bullet = function(){
   var bullet = gecko.bullet(BULLET_KEY);
   bullet.send(items, 'horizontal', callback);
 };
+*/
+
+exports.makePie = makePie;
+exports.makeLine = makeLine;
+exports.makeRagColumns = makeRagColumns;
+exports.makeFunnel = makeFunnel;
+
